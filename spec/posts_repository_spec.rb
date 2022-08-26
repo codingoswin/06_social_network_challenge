@@ -1,7 +1,7 @@
 require 'posts_repository' 
 
 def reset_post_table
-    seed_sql = File.read('spec/seeds_posts.sql')
+    seed_sql = File.read('spec/seeds_user_accounts.sql')
     connection = PG.connect({ host: '127.0.0.1', dbname: 'social_network' })
     connection.exec(seed_sql)
 end
@@ -36,7 +36,7 @@ RSpec.describe PostsRepository do
         post.title = 'title3'
         post.content = 'content3'
         post.number_of_views = 300
-        post.user_account_id = 3
+        post.user_account_id = 2
 
         repo.create(post)
         posts = repo.all 
@@ -44,7 +44,7 @@ RSpec.describe PostsRepository do
         expect(last_post.title).to eq 'title3'
         expect(last_post.content).to eq 'content3'
         expect(last_post.number_of_views).to eq 300
-        expect(last_post.user_account_id).to eq 3
+        expect(last_post.user_account_id).to eq 2
     end
 
     it '#delete method deletes a post from the posts table' do
@@ -52,7 +52,7 @@ RSpec.describe PostsRepository do
         id_to_delete = 1
         repo.delete(id_to_delete)
         posts= repo.all
-        expect(posts.length).to eq 2
+        expect(posts.length).to eq 1
         expect(posts.first.id).to eq 2
    end
 end
