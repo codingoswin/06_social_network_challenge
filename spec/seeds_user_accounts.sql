@@ -5,5 +5,5 @@ TRUNCATE TABLE user_accounts, posts RESTART IDENTITY; -- replace with your own t
 
 INSERT INTO user_accounts (username, email_address) VALUES ('username1', 'username1@gmail.com');
 INSERT INTO user_accounts (username, email_address) VALUES ('username2', 'username2@gmail.com');
-INSERT INTO posts (title, content,number_of_views, user_account_id) VALUES ('title1', 'contents1', 100, 1);
-INSERT INTO posts (title, content, number_of_views, user_account_id) VALUES ('title2', 'contents2', 200, 2);
+INSERT INTO posts (title, content,number_of_views, user_account_id) VALUES ('title1', 'content1', 100, 1);
+INSERT INTO posts (title, content, number_of_views, user_account_id) VALUES ('title2', 'content2', 200, 2);
