@@ -23,4 +23,33 @@ RSpec.describe UserAccountRepository do
     expect(accounts[1].username).to eq 'username2'
     expect(accounts[1].email_address).to eq 'username2@gmail.com'
    end
+
+   it '#find method returns a single user account' do
+    repo = UserAccountRepository.new
+    user = repo.find(1)
+    expect(user.id).to eq  1
+    expect(user.username).to eq  'username1'
+   expect(user.email_address).to eq  'username1@gmail.com'
+   end
+
+   it '#create method returns newly created user record' do
+    repo = UserAccountRepository.new
+    user = UserAccount.new
+    user.username = 'username3'
+    user.email_address = 'username3@gmail.com'
+    repo.create(user)
+    users = repo.all 
+    last_user = users.last 
+    expect(last_user.username).to eq 'username3'
+    expect(last_user.email_address).to eq 'username3@gmail.com'
+   end
+
+   it '#delete method deletes a record from the user account table' do
+        repo = UserAccountRepository.new
+        id_to_delete = 1
+        repo.delete(id_to_delete)
+        users = repo.all
+        expect(users.length).to eq 1
+        expect(users.first.id).to eq 2
+   end
 end

@@ -109,16 +109,18 @@ class UserAccountRepository
   # One argument: the id (number)
   def find(id)
     # Executes the SQL query:
-    # SELECT id, name, cohort_name FROM students WHERE id = $1;
+     SELECT id, username, email_address FROM user_accounts WHERE id = $1;
 
     # Returns a single Student object.
   end
 
   def create
+    INSERT INTO user_accounts (username, email_address) VALUES($1,$2);
 
   end
 
   def delete
+    DELETE FROM user_accounts WHERE id = $1;
 
   end
 
@@ -164,13 +166,13 @@ accounts[1].email_address # =>  'username2@gmail.com'
 # 2
 # Get a single student
 
-repo = StudentRepository.new
+repo = UserAccountRepository.new
 
-student = repo.find(1)
+user = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+user.id # =>  1
+user.username # =>  'username1'
+user.email_address # =>  'username1@gmail.com'
 
 # Add more examples for each method
 ```
